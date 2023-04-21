@@ -63,7 +63,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// メインループ
 	while (true) {
-		// メッセージ処理
+		//メッセージ処理
 		if (win->ProcessMessage()) {
 			break;
 		}
