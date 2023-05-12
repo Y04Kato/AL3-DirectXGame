@@ -46,6 +46,7 @@ void Player::Update() {
 	    worldTransform_.translation_.x, worldTransform_.translation_.y,
 	    worldTransform_.translation_.z};
 	ImGui::Begin("Player");
+	ImGui::Text("debugCamera = Q");
 	ImGui::SliderFloat3("Player", inputFloat3, -40.0f, 40.0f);
 	ImGui::End();
 	worldTransform_.translation_.x = inputFloat3[0];
