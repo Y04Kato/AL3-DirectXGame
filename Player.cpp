@@ -41,6 +41,17 @@ void Player::Update() {
 
 	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, move);
 
+	// ù‰ñˆ—
+	Rotate();
+
+	// UŒ‚ˆ—
+	Attack();
+
+	//’eXV
+	if (bullet_) {
+		bullet_->Update();
+	}
+
 	// Gui‚É‚æ‚éˆÚ“®
 	float inputFloat3[3] = {
 	    worldTransform_.translation_.x, worldTransform_.translation_.y,
@@ -62,14 +73,38 @@ void Player::Update() {
 	worldTransform_.translation_.y = max(worldTransform_.translation_.y, -kMoveLimitY);
 	worldTransform_.translation_.y = min(worldTransform_.translation_.y, +kMoveLimitY);
 
-	worldTransform_.matWorld_ = MakeAffineMatrix(
-	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
+	worldTransform_.UpdateMatrix();
+}
 
-	// s—ñ‚ð’è”ƒoƒbƒtƒ@‚É“]‘—
-	worldTransform_.TransferMatrix();
+void Player::Rotate() {
+	// ‰ñ“]‘¬‚³
+	const float kRotSpeed = 0.02f;
+
+	// „‚µ‚½•ûŒü‚ÅˆÚ“®ƒxƒNƒgƒ‹•ÏX
+	if (input_->PushKey(DIK_A)) {
+		worldTransform_.rotation_.y += kRotSpeed;
+	} else if (input_->PushKey(DIK_D)) {
+		worldTransform_.rotation_.y -= kRotSpeed;
+	}
+}
+
+void Player::Attack() {
+	if (input_->PushKey(DIK_SPACE)) {
+	//’e‚ð¶¬‚µ‰Šú‰»
+		PlayerBullet* newBullet = new PlayerBullet();
+		newBullet->Initialize(model_, worldTransform_.translation_);
+
+		//’e‚ð“o˜^‚·‚é
+		bullet_ = newBullet;
+	}
 }
 
 void Player::Draw(ViewProjection viewProjection) {
 	// 3Dƒ‚ƒfƒ‹‚ð•`‰æ
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
+
+	//’e•`‰æ
+	if (bullet_) {
+		bullet_->Draw(viewProjection);
+	}
 }
