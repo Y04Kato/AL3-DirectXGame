@@ -39,25 +39,27 @@ void Player::Update() {
 		move.y -= kCharacterSpeed;
 	}
 
+	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, move);
+
 	// GuiÇ…ÇÊÇÈà⁄ìÆ
-	float inputFloat3[3] = {move.x + 1, move.y + 1, move.z + 1};
+	float inputFloat3[3] = {
+	    worldTransform_.translation_.x, worldTransform_.translation_.y,
+	    worldTransform_.translation_.z};
 	ImGui::Begin("Player");
-	ImGui::SliderFloat3("Player", inputFloat3, 0.0f, 2.0f);
+	ImGui::SliderFloat3("Player", inputFloat3, -40.0f, 40.0f);
 	ImGui::End();
-	move.x = inputFloat3[0] - 1;
-	move.y = inputFloat3[1] - 1;
-	move.z = inputFloat3[2] - 1;
+	worldTransform_.translation_.x = inputFloat3[0];
+	worldTransform_.translation_.y = inputFloat3[1];
+	worldTransform_.translation_.z = inputFloat3[2];
 
 	// à⁄ìÆêßå¿
-	const float kMoveLimitX = WinApp::kWindowWidth - 100;
-	const float kMoveLimitY = WinApp::kWindowHeight - 100;
+	const float kMoveLimitX = 33;
+	const float kMoveLimitY = 18;
 
 	worldTransform_.translation_.x = max(worldTransform_.translation_.x, -kMoveLimitX);
 	worldTransform_.translation_.x = min(worldTransform_.translation_.x, +kMoveLimitX);
 	worldTransform_.translation_.y = max(worldTransform_.translation_.y, -kMoveLimitY);
 	worldTransform_.translation_.y = min(worldTransform_.translation_.y, +kMoveLimitY);
-
-	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
