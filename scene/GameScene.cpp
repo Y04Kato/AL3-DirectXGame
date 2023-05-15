@@ -1,7 +1,7 @@
 #include "GameScene.h"
+#include "AxisIndicator.h"
 #include "TextureManager.h"
 #include <cassert>
-#include "AxisIndicator.h"
 
 GameScene::GameScene() {}
 
@@ -9,6 +9,7 @@ GameScene::~GameScene() {
 	delete model_;
 	delete player_;
 	delete debugCamera_;
+	delete enemy_;
 }
 
 void GameScene::Initialize() {
@@ -28,20 +29,29 @@ void GameScene::Initialize() {
 
 	input_ = Input::GetInstance();
 
-	//軸方向表示の表示を有効化
+	// 軸方向表示の表示を有効化
 	AxisIndicator::GetInstance()->SetVisible(true);
-	//参照するビュープロジェクションを指定
+	// 参照するビュープロジェクションを指定
 	AxisIndicator::GetInstance()->SetTargetViewProjection(&viewProjection_);
 
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
 	player_->Initialize(model_, textureHandle_);
+
+	// 敵キャラの生成
+	enemy_ = new Enemy();
+	// 敵キャラの初期化
+	Vector3 position = {0, 0, 20};
+	enemy_->Initialize(model_, position);
 }
 
 void GameScene::Update() {
 	// 自キャラの更新
 	player_->Update();
+
+	// 敵キャラの更新
+	enemy_->Update();
 
 	debugCamera_->Update();
 #ifdef _DEBUG
@@ -93,6 +103,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	enemy_->Draw(viewProjection_);
 	player_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
