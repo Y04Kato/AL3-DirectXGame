@@ -11,6 +11,16 @@ Vector3 VectorMultiply(const Vector3& translation, const Vector3& move) {
 	return result;
 }
 
+Player::Player() {
+
+}
+
+Player::~Player() {
+	for (PlayerBullet* bullet : bullets_) {
+		delete bullet;
+	}
+}
+
 void Player::Initialize(Model* model, uint32_t textureHandle) {
 	// NULLƒ|ƒCƒ“ƒ^ƒ`ƒFƒbƒN
 	assert(model);
@@ -47,9 +57,9 @@ void Player::Update() {
 	// UŒ‚ˆ—
 	Attack();
 
-	//’eXV
-	if (bullet_) {
-		bullet_->Update();
+	// ’eXV
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Update();
 	}
 
 	// Gui‚É‚æ‚éˆÚ“®
@@ -89,13 +99,13 @@ void Player::Rotate() {
 }
 
 void Player::Attack() {
-	if (input_->PushKey(DIK_SPACE)) {
-	//’e‚ð¶¬‚µ‰Šú‰»
+	if (input_->TriggerKey(DIK_SPACE)) {
+		// ’e‚ð¶¬‚µ‰Šú‰»
 		PlayerBullet* newBullet = new PlayerBullet();
 		newBullet->Initialize(model_, worldTransform_.translation_);
 
-		//’e‚ð“o˜^‚·‚é
-		bullet_ = newBullet;
+		// ’e‚ð“o˜^‚·‚é
+		bullets_.push_back(newBullet);
 	}
 }
 
@@ -103,8 +113,8 @@ void Player::Draw(ViewProjection viewProjection) {
 	// 3Dƒ‚ƒfƒ‹‚ð•`‰æ
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
 
-	//’e•`‰æ
-	if (bullet_) {
-		bullet_->Draw(viewProjection);
+	// ’e•`‰æ
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Draw(viewProjection);
 	}
 }
