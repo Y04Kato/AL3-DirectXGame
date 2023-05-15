@@ -1,7 +1,8 @@
 #include "PlayerBullet.h"
 #include <cassert>
+#include "Affin.h"
 
-void PlayerBullet::Initialize(Model* model, const Vector3& position) {
+void PlayerBullet::Initialize(Model* model, const Vector3& position, const Vector3& velocity) {
 	assert(model);
 
 	model_ = model;
@@ -11,9 +12,18 @@ void PlayerBullet::Initialize(Model* model, const Vector3& position) {
 	worldTransform_.Initialize();
 
 	worldTransform_.translation_ = position;
+
+	velocity_ = velocity;
 }
 
 void PlayerBullet::Update() {
+	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, velocity_);
+
+	//時間経過で消滅
+	if (--deathTimer_ <= 0) {
+		isDead_ = true;
+	}
+
 	// ワールドトランスフォームの更新
 	worldTransform_.UpdateMatrix();
 }

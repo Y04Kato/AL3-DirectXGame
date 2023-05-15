@@ -3,14 +3,6 @@
 #include "ImGuiManager.h"
 #include <cassert>
 
-Vector3 VectorMultiply(const Vector3& translation, const Vector3& move) {
-	Vector3 result;
-	result.x = translation.x + move.x;
-	result.y = translation.y + move.y;
-	result.z = translation.z + move.z;
-	return result;
-}
-
 Player::Player() {
 
 }
@@ -34,6 +26,16 @@ void Player::Initialize(Model* model, uint32_t textureHandle) {
 }
 
 void Player::Update() {
+	//ƒfƒXƒtƒ‰ƒO‚Ì—§‚Á‚½’e‚Ìíœ
+	bullets_.remove_if([](PlayerBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
+
+
 	Vector3 move = {0, 0, 0};
 	const float kCharacterSpeed = 0.2f;
 	if (input_->PushKey(DIK_LEFT)) {
@@ -100,9 +102,16 @@ void Player::Rotate() {
 
 void Player::Attack() {
 	if (input_->TriggerKey(DIK_SPACE)) {
+		//’e‚Ì‘¬“x
+		const float kBulletSpeed = 1.0f;
+		Vector3 velocity(0, 0, kBulletSpeed);
+
+		//‘¬“xƒxƒNƒgƒ‹‚ðŽ©‹@‚É‡‚í‚¹‚Ä‰ñ“]‚³‚¹‚é
+		velocity = TransformNormal(velocity, worldTransform_.matWorld_);
+
 		// ’e‚ð¶¬‚µ‰Šú‰»
 		PlayerBullet* newBullet = new PlayerBullet();
-		newBullet->Initialize(model_, worldTransform_.translation_);
+		newBullet->Initialize(model_, worldTransform_.translation_, velocity);
 
 		// ’e‚ð“o˜^‚·‚é
 		bullets_.push_back(newBullet);

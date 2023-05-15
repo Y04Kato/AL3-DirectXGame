@@ -1,4 +1,13 @@
-#include"Affin.h"
+#include "Affin.h"
+
+// ë´ÇµéZ
+Vector3 VectorMultiply(const Vector3& translation, const Vector3& move) {
+	Vector3 result;
+	result.x = translation.x + move.x;
+	result.y = translation.y + move.y;
+	result.z = translation.z + move.z;
+	return result;
+}
 
 // 1 Xé≤âÒì]çsóÒ
 Matrix4x4 MakeRotateXmatrix(float radian) {
@@ -125,6 +134,16 @@ Matrix4x4 MakeScaleMatrix(const Vector3& scale) {
 	result.m[3][2] = 0.0f;
 	result.m[3][3] = 1.0f;
 
+	return result;
+}
+
+// TransformNormal
+Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m) {
+	Vector3 result{
+	    v.x * m.m[0][0] + v.y * m.m[1][0] + v.z * m.m[2][0],
+	    v.x * m.m[0][1] + v.y * m.m[1][1] + v.z * m.m[2][1],
+	    v.x * m.m[0][2] + v.y * m.m[1][2] + v.z * m.m[2][2],
+	};
 	return result;
 }
 
