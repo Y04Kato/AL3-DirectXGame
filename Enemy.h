@@ -2,6 +2,11 @@
 #include "Model.h"
 #include "WorldTransform.h"
 
+enum class Phase {
+	Approach, // ê⁄ãﬂÇ∑ÇÈ
+	Leave,    // ó£íEÇ∑ÇÈ
+};
+
 class Enemy {
 public:
 	void Initialize(Model* model, const Vector3& position);
@@ -14,4 +19,6 @@ private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0u;
+
+	Phase phase_ = Phase::Approach;
 };

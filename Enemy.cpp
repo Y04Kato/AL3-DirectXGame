@@ -17,8 +17,20 @@ void Enemy::Initialize(Model* model, const Vector3& position) {
 void Enemy::Update() {
 	Vector3 move = {0, 0, 0};
 	const float kCharacterSpeed = 0.2f;
-
-	move.z -= kCharacterSpeed;
+	switch (phase_) { 
+	case Phase::Approach:
+	default:
+		//ˆÚ“®
+		move.z -= kCharacterSpeed;
+		if (worldTransform_.translation_.z < 0.0f) {
+			phase_ = Phase::Leave;
+		}
+		break;
+	case Phase::Leave:
+		move.x -= kCharacterSpeed;
+		move.y += kCharacterSpeed;
+		break;
+	}
 
 	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, move);
 
