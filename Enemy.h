@@ -30,10 +30,8 @@ private:
 	uint32_t textureHandle_ = 0u;
 
 	Vector3 move_;
-	float kCharacterSpeed_;
+	float kCharacterApproachSpeed_;
+	float kCharacterLeaveSpeed_;
 
 	Phase phase_ = Phase::Approach;
-
-	// static size_t approach_;
-	// static size_t leave_;
 };
