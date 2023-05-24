@@ -6,6 +6,7 @@ void Enemy::Initialize(Model* model, const Vector3& position) {
 	assert(model);
 
 	model_ = model;
+
 	// テクスチャ読み込み
 	textureHandle_ = TextureManager::Load("black.png");
 
