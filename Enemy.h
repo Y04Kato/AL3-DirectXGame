@@ -15,10 +15,25 @@ public:
 
 	void Draw(const ViewProjection& viewProjection);
 
+	// 自作メンバ関数
+	void Approach();
+
+	void Leave();
+
+private:
+	// メンバ関数ポインタのテーブル
+	static void (Enemy::*phasetable_[])();
+
 private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0u;
 
+	Vector3 move_;
+	float kCharacterSpeed_;
+
 	Phase phase_ = Phase::Approach;
+
+	// static size_t approach_;
+	// static size_t leave_;
 };
