@@ -1,24 +1,28 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
+#include "EnemyState.h"
+#include "Affin.h"
 
-enum class Phase {
-	Approach, // 接近する
-	Leave,    // 離脱する
-};
+class EnemyState;
 
 class Enemy {
 public:
-	void Initialize(Model* model, const Vector3& position);
+	Enemy();
+
+	~Enemy();
+
+	void Initialize(Model* model);
 
 	void Update();
 
 	void Draw(const ViewProjection& viewProjection);
 
-	// 自作メンバ関数
-	void Approach();
+	void Move(Vector3 speed);
 
-	void Leave();
+	void ChangePhase(EnemyState* newState);
+
+	Vector3 GetTranslation() { return worldTransform_.translation_; };
 
 private:
 	// メンバ関数ポインタのテーブル
@@ -29,9 +33,7 @@ private:
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0u;
 
-	Vector3 move_;
-	float kCharacterApproachSpeed_;
-	float kCharacterLeaveSpeed_;
+	
 
-	Phase phase_ = Phase::Approach;
+	EnemyState* phase_ = nullptr;
 };
