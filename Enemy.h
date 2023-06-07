@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "WorldTransform.h"
 #include "EnemyState.h"
+#include "EnemyBullet.h"
 #include "Affin.h"
 
 class EnemyState;
@@ -24,6 +25,8 @@ public:
 
 	Vector3 GetTranslation() { return worldTransform_.translation_; };
 
+	void Fire();
+
 private:
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*phasetable_[])();
@@ -33,7 +36,7 @@ private:
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0u;
 
-	
+	std::list<EnemyBullet*> bullets_;
 
 	EnemyState* phase_ = nullptr;
 };
