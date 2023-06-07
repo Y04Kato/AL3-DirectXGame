@@ -1,9 +1,9 @@
 #pragma once
+#include "Affin.h"
+#include "EnemyBullet.h"
+#include "EnemyState.h"
 #include "Model.h"
 #include "WorldTransform.h"
-#include "EnemyState.h"
-#include "EnemyBullet.h"
-#include "Affin.h"
 
 class EnemyState;
 
@@ -39,4 +39,9 @@ private:
 	std::list<EnemyBullet*> bullets_;
 
 	EnemyState* phase_ = nullptr;
+
+public:
+	static const int kFireInterval = 60;
+
+	int32_t FireTimer_ = 0;
 };

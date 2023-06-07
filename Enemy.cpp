@@ -26,8 +26,6 @@ void Enemy::Initialize(Model* model) {
 	worldTransform_.Initialize();
 
 	worldTransform_.translation_ = {10, 0, 20};
-
-	Fire();
 }
 
 void Enemy::Update() {
@@ -43,7 +41,11 @@ void Enemy::Update() {
 	phase_->Update(this);
 
 	// 攻撃処理
-	//Fire();
+	FireTimer_--;
+	if (FireTimer_ <= 0) {
+		Fire();
+		FireTimer_ = kFireInterval;
+	}
 
 	// ワールドトランスフォームの更新
 	worldTransform_.UpdateMatrix();
