@@ -5,10 +5,13 @@
 Enemy::Enemy() {}
 
 Enemy::~Enemy() {
-	delete phase_;
+	// delete phase_;
 
 	for (EnemyBullet* bullet : bullets_) {
 		delete bullet;
+	}
+	for (TimedCall* timedCall : timedCalls_) {
+		delete timedCall;
 	}
 }
 
@@ -21,11 +24,14 @@ void Enemy::Initialize(Model* model) {
 	textureHandle_ = TextureManager::Load("black.png");
 
 	// フェーズ開始
-	phase_ = new EnemyApproach();
+	// phase_ = new EnemyApproach();
 
 	worldTransform_.Initialize();
 
 	worldTransform_.translation_ = {10, 0, 20};
+
+	FireTimer_ = kFireInterval;
+	FireandReset();
 }
 
 void Enemy::Update() {
@@ -38,14 +44,20 @@ void Enemy::Update() {
 		return false;
 	});
 
-	phase_->Update(this);
-
-	// 攻撃処理
-	FireTimer_--;
-	if (FireTimer_ <= 0) {
-		Fire();
-		FireTimer_ = kFireInterval;
+	// phase_->Update(this);
+	
+	//タイマー
+	timedCalls_.remove_if([](TimedCall* timedcall) {
+		if (timedcall->IsFinish()) {
+			delete timedcall;
+			return true;
+		}
+		return false;
+	});
+	for (TimedCall* timedCall : timedCalls_) {
+		timedCall->Update();
 	}
+
 
 	// ワールドトランスフォームの更新
 	worldTransform_.UpdateMatrix();
@@ -87,4 +99,12 @@ void Enemy::Draw(const ViewProjection& viewProjection) {
 	for (EnemyBullet* bullet : bullets_) {
 		bullet->Draw(viewProjection);
 	}
+}
+
+void Enemy::FireandReset() {
+	// 攻撃処理
+	Fire();
+
+	// タイマー
+	timedCalls_.push_back(new TimedCall(std::bind(&Enemy::FireandReset, this), kFireInterval));
 }

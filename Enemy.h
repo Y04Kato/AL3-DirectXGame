@@ -4,6 +4,7 @@
 #include "EnemyState.h"
 #include "Model.h"
 #include "WorldTransform.h"
+#include "TimedCall.h"
 
 class EnemyState;
 
@@ -27,6 +28,8 @@ public:
 
 	void Fire();
 
+	void FireandReset();
+
 private:
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*phasetable_[])();
@@ -39,6 +42,8 @@ private:
 	std::list<EnemyBullet*> bullets_;
 
 	EnemyState* phase_ = nullptr;
+
+	std::list<TimedCall*> timedCalls_;
 
 public:
 	static const int kFireInterval = 60;
