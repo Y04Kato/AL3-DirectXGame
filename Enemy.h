@@ -5,6 +5,9 @@
 #include "Model.h"
 #include "WorldTransform.h"
 #include "TimedCall.h"
+#include "CalcMath.h"
+
+class Player;
 
 class EnemyState;
 
@@ -30,6 +33,10 @@ public:
 
 	void FireandReset();
 
+	void SetPlayer(Player* player) { player_ = player; }
+
+	Vector3 GetWorldPosition();
+
 private:
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*phasetable_[])();
@@ -38,6 +45,8 @@ private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0u;
+
+	Player* player_ = nullptr;
 
 	std::list<EnemyBullet*> bullets_;
 

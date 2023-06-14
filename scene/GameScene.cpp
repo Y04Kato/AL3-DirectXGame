@@ -41,6 +41,7 @@ void GameScene::Initialize() {
 
 	// 敵キャラの生成
 	enemy_ = new Enemy();
+	enemy_->SetPlayer(player_);
 	// 敵キャラの初期化
 	Vector3 position = {0, 0, 20};
 	enemy_->Initialize(model_);

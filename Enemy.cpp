@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Affin.h"
 #include <cassert>
+#include "Player.h"
 
 Enemy::Enemy() {}
 
@@ -76,12 +77,23 @@ void Enemy::ChangePhase(EnemyState* newState) {
 void Enemy::Move(Vector3 speed) { worldTransform_.translation_ += speed; };
 
 void Enemy::Fire() {
+	assert(player_);
+
 	// 弾の速度
 	const float kBulletSpeed = -1.0f;
-	Vector3 velocity(0, 0, kBulletSpeed);
 
-	// 速度ベクトルを自機に合わせて回転させる
-	velocity = TransformNormal(velocity, worldTransform_.matWorld_);
+	Vector3 playerPosition = player_->GetWorldPosition();
+	Vector3 enemyPosition = this->GetWorldPosition();
+	Vector3 velocity = Subtract(playerPosition, enemyPosition);
+	velocity = Normalise(velocity);
+	velocity.x *= -kBulletSpeed;
+	velocity.y *= -kBulletSpeed;
+	velocity.z *= -kBulletSpeed;
+
+	//Vector3 velocity(0, 0, kBulletSpeed);
+
+	//// 速度ベクトルを自機に合わせて回転させる
+	//velocity = TransformNormal(velocity, worldTransform_.matWorld_);
 
 	// 弾を生成し初期化
 	EnemyBullet* newBullet = new EnemyBullet();
@@ -107,4 +119,12 @@ void Enemy::FireandReset() {
 
 	// タイマー
 	timedCalls_.push_back(new TimedCall(std::bind(&Enemy::FireandReset, this), kFireInterval));
+}
+
+Vector3 Enemy::GetWorldPosition() {
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
 }

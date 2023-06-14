@@ -22,6 +22,8 @@ public:
 
 	void Attack();
 
+	Vector3 GetWorldPosition();
+
 private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;
