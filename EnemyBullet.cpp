@@ -1,4 +1,5 @@
 #include "Affin.h"
+#include "CalcMath.h"
 #include "EnemyBullet.h"
 #include <cassert>
 #include "Player.h"
@@ -29,16 +30,15 @@ void EnemyBullet::Update() {
 	Vector3 toPlayer = Subtract(player_->GetWorldPosition(), worldTransform_.translation_);
 	toPlayer = Normalise(toPlayer);
 	velocity_ = Normalise(velocity_);
-	velocity_ = Slerp(0.1f, velocity_, toPlayer);
+	velocity_ = Slerp(velocity_, toPlayer, 0.1f);
 
-	// Yé≤âÒÇË
+	// Yé≤
 	worldTransform_.rotation_.y = std::atan2(velocity_.x, velocity_.z);
 	float velociteXZ = Length({velocity_.x, 0.0f, velocity_.z});
-	// Xé≤âÒÇË
+	// Xé≤
 	worldTransform_.rotation_.x = std::atan2(-velocity_.y, velociteXZ);
 
-
-	//worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, velocity_);
+	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, velocity_);
 
 	// éûä‘åoâﬂÇ≈è¡ñ≈
 	if (--deathTimer_ <= 0) {

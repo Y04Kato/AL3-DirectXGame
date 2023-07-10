@@ -97,6 +97,7 @@ void Enemy::Fire() {
 
 	// ’e‚ð¶¬‚µ‰Šú‰»
 	EnemyBullet* newBullet = new EnemyBullet();
+	newBullet->SetPlayer(player_);
 	newBullet->Initialize(model_, worldTransform_.translation_, velocity);
 
 	// ’e‚ð“o˜^‚·‚é

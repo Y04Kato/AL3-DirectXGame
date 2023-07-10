@@ -21,16 +21,16 @@ Vector3 Normalise(const Vector3& v) {
 	return v;
 }
 
- Vector3 Lerp(float t, const Vector3& s, const Vector3& e) {
+ Vector3 Lerp(const Vector3& s, const Vector3& e, float t) {
 	Vector3 result;
 	Vector3 es = Subtract(e, s);
 	result = Add(s, Multiply3(t, es));
 	return result;
 }
-Vector3 Slerp(float t, const Vector3& s, const Vector3& e) {
+ Vector3 Slerp(const Vector3& s, const Vector3& e, float t) {
 	float dot = Dot(Normalise(s), Normalise(e));
 	if (std::abs(dot) > 0.999f) {
-		return Lerp(t, s, e);
+		return Lerp(s, e,t);
 	}
 	float theta = std::acos(dot);
 	float sinTheta = std::sin(theta);

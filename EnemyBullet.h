@@ -1,7 +1,6 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
-#include "CalcMath.h"
 class Player;
 
 class EnemyBullet {
