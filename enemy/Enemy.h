@@ -4,7 +4,7 @@
 #include "EnemyState.h"
 #include "Model.h"
 #include "WorldTransform.h"
-#include "TimedCall.h"
+#include "utilities/TimedCall.h"
 #include "CalcMath.h"
 
 class Player;
