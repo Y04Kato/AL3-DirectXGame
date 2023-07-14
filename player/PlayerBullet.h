@@ -10,6 +10,8 @@ public:
 
 	void Draw(const ViewProjection& viewProjection);
 
+	void OnCollision();
+
 private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;

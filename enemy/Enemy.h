@@ -37,6 +37,8 @@ public:
 
 	Vector3 GetWorldPosition();
 
+	void OnCollision();
+
 private:
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*phasetable_[])();

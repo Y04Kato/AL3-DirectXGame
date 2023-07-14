@@ -15,6 +15,8 @@ public:
 
 	void SetPlayer(Player* player) { player_ = player; }
 
+	void OnCollision();
+
 private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;

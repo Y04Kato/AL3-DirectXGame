@@ -118,6 +118,8 @@ void Player::Attack() {
 	}
 }
 
+void
+
 void Player::Draw(ViewProjection viewProjection) {
 	// 3Dƒ‚ƒfƒ‹‚ð•`‰æ
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
