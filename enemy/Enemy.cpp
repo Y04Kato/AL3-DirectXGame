@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "Affin.h"
-#include <cassert>
 #include "player/Player.h"
+#include <cassert>
 
 Enemy::Enemy() {}
 
@@ -46,8 +46,8 @@ void Enemy::Update() {
 	});
 
 	// phase_->Update(this);
-	
-	//タイマー
+
+	// タイマー
 	timedCalls_.remove_if([](TimedCall* timedcall) {
 		if (timedcall->IsFinish()) {
 			delete timedcall;
@@ -58,7 +58,6 @@ void Enemy::Update() {
 	for (TimedCall* timedCall : timedCalls_) {
 		timedCall->Update();
 	}
-
 
 	// ワールドトランスフォームの更新
 	worldTransform_.UpdateMatrix();
@@ -90,10 +89,10 @@ void Enemy::Fire() {
 	velocity.y *= -kBulletSpeed;
 	velocity.z *= -kBulletSpeed;
 
-	//Vector3 velocity(0, 0, kBulletSpeed);
+	// Vector3 velocity(0, 0, kBulletSpeed);
 
 	//// 速度ベクトルを自機に合わせて回転させる
-	//velocity = TransformNormal(velocity, worldTransform_.matWorld_);
+	// velocity = TransformNormal(velocity, worldTransform_.matWorld_);
 
 	// 弾を生成し初期化
 	EnemyBullet* newBullet = new EnemyBullet();
@@ -103,6 +102,8 @@ void Enemy::Fire() {
 	// 弾を登録する
 	bullets_.push_back(newBullet);
 }
+
+void Enemy::OnCollision() {}
 
 void Enemy::Draw(const ViewProjection& viewProjection) {
 	// モデルの描画

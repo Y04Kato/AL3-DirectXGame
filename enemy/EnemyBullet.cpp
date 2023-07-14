@@ -2,7 +2,7 @@
 #include "CalcMath.h"
 #include "EnemyBullet.h"
 #include <cassert>
-#include "Player.h"
+#include "Player/Player.h"
 
 void EnemyBullet::Initialize(Model* model, const Vector3& position, const Vector3& velocity) {
 	assert(model);
@@ -47,6 +47,10 @@ void EnemyBullet::Update() {
 
 	// ワールドトランスフォームの更新
 	worldTransform_.UpdateMatrix();
+}
+
+void EnemyBullet::OnCollision() {
+
 }
 
 void EnemyBullet::Draw(const ViewProjection& viewProjection) {

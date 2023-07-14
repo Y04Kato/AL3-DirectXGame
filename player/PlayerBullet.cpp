@@ -28,6 +28,10 @@ void PlayerBullet::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
+void PlayerBullet::OnCollision() {
+
+}
+
 void PlayerBullet::Draw(const ViewProjection& viewProjection) {
 	// ƒ‚ƒfƒ‹‚Ì•`‰æ
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);

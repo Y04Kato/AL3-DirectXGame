@@ -118,7 +118,9 @@ void Player::Attack() {
 	}
 }
 
-void
+void Player::OnCollision() {
+
+}
 
 void Player::Draw(ViewProjection viewProjection) {
 	// 3Dƒ‚ƒfƒ‹‚ð•`‰æ
