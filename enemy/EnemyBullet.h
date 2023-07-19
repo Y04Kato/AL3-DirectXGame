@@ -1,9 +1,10 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
+#include "Collider.h"
 class Player;
 
-class EnemyBullet {
+class EnemyBullet : public Collider {
 public:
 	void Initialize(Model* model, const Vector3& position, const Vector3& velocity);
 
@@ -15,9 +16,9 @@ public:
 
 	void SetPlayer(Player* player) { player_ = player; }
 
-	void OnCollision();
+	void OnCollision() override;
 
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition() override;
 
 private:
 	WorldTransform worldTransform_;

@@ -6,12 +6,13 @@
 #include "WorldTransform.h"
 #include "utilities/TimedCall.h"
 #include "CalcMath.h"
+#include "Collider.h"
 
 class Player;
 
 class EnemyState;
 
-class Enemy {
+class Enemy : public Collider {
 public:
 	Enemy();
 
@@ -35,9 +36,9 @@ public:
 
 	void SetPlayer(Player* player) { player_ = player; }
 
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition() override;
 
-	void OnCollision();
+	void OnCollision() override;
 
 	const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
 
