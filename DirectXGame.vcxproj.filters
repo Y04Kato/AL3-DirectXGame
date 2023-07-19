@@ -221,6 +221,9 @@
     <ClInclude Include="enemy\EnemyState.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\SpritePS.hlsl">
