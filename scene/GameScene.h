@@ -13,6 +13,7 @@
 #include "enemy/Enemy.h"
 #include "CollisionManager.h"
 #include "CollisionConfig.h"
+#include "object/Skydome.h"
 
 /// <summary>
 /// ゲームシーン
@@ -67,6 +68,9 @@ private: // メンバ変数
 	Enemy* enemy_ = nullptr;
 
 	CollisionManager* collisionManager_;
+
+	Skydome* skydome_;
+	Model* skydomeModel_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

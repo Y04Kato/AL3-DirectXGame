@@ -121,6 +121,7 @@
     <ClCompile Include="enemy\EnemyState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\CollisionManager.cpp" />
+    <ClCompile Include="object\Skydome.cpp" />
     <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="player\PlayerBullet.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
+    <ClInclude Include="object\Skydome.h" />
     <ClInclude Include="player\Player.h" />
     <ClInclude Include="player\PlayerBullet.h" />
     <ClInclude Include="scene\GameScene.h" />

@@ -11,6 +11,8 @@ GameScene::~GameScene() {
 	delete debugCamera_;
 	delete enemy_;
 	delete collisionManager_;
+	delete skydome_;
+	delete skydomeModel_;
 }
 
 void GameScene::Initialize() {
@@ -48,6 +50,10 @@ void GameScene::Initialize() {
 	enemy_->Initialize(model_);
 
 	collisionManager_ = new CollisionManager();
+
+	skydomeModel_ = Model::CreateFromOBJ("skydome", true);
+	skydome_ = new Skydome();
+	skydome_->Initialize(skydomeModel_);
 }
 
 void GameScene::Update() {
@@ -70,6 +76,8 @@ void GameScene::Update() {
 	}
 
 	collisionManager_->CheckAllCollision();
+
+	skydome_->Update();
 
 	debugCamera_->Update();
 
@@ -124,6 +132,7 @@ void GameScene::Draw() {
 	/// </summary>
 	enemy_->Draw(viewProjection_);
 	player_->Draw(viewProjection_);
+	skydome_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
