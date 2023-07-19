@@ -54,9 +54,10 @@ void GameScene::Update() {
 	// 敵キャラの更新
 	enemy_->Update();
 
+	CheckAllCollisions();
+
 	debugCamera_->Update();
 
-	CheckAllCollisions();
 #ifdef _DEBUG
 	if (input_->TriggerKey(DIK_Q)) {
 		if (isDebugCameraActive_ == false) {
@@ -138,41 +139,15 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自弾と敵キャラ
-	posA = enemy_->GetWorldPosition();
 	for (PlayerBullet* bullet : playerBullets) {
-		posB = bullet->GetWorldPosition();
-
-		Vector3 Distance = {
-		    (posB.x - posA.x) * (posB.x - posA.x), 
-			(posB.y - posA.y) * (posB.y - posA.y),
-		    (posB.z - posA.z) * (posB.z - posA.z)};
-		
-		if (Distance.x + Distance.y + Distance.z <=
-		    (enemyRadius + playerBulletRadius) * (enemyRadius + playerBulletRadius)) {
-			enemy_->OnCollision();
-			bullet->OnCollision();
-		}
+		CheckCollisionPair(bullet, enemy_);
 	}
 #pragma endregion
 
 #pragma region 自弾と敵弾
 	for (EnemyBullet* eBullet : enemyBullets) {
-
-		posA = eBullet->GetWorldPosition();
 		for (PlayerBullet* pbullet : playerBullets) {
-			posB = pbullet->GetWorldPosition();
-
-			Vector3 Distance = {
-			    (posB.x - posA.x) * (posB.x - posA.x),
-				(posB.y - posA.y) * (posB.y - posA.y),
-			    (posB.z - posA.z) * (posB.z - posA.z)};
-
-			if (Distance.x + Distance.y + Distance.z <=
-			    (enemyBulletRadius + playerBulletRadius) *
-			        (enemyBulletRadius + playerBulletRadius)) {
-				eBullet->OnCollision();
-				pbullet->OnCollision();
-			}
+			CheckCollisionPair(eBullet, pbullet);
 		}
 	}
 #pragma endregion
