@@ -7,6 +7,7 @@
 #include "utilities/TimedCall.h"
 #include "CalcMath.h"
 #include "Collider.h"
+#include "CollisionConfig.h"
 
 class Player;
 

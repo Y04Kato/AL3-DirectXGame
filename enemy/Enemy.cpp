@@ -33,6 +33,9 @@ void Enemy::Initialize(Model* model) {
 
 	FireTimer_ = kFireInterval;
 	FireandReset();
+
+	SetCollisionAttribute(CollisionConfig::kCollisionAttributeEnemy);
+	SetCollisionMask(~CollisionConfig::kCollisionAttributeEnemy);
 }
 
 void Enemy::Update() {
