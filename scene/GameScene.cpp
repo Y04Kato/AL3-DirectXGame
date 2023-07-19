@@ -133,19 +133,21 @@ void GameScene::CheckAllCollisions() {
 
 	colliders_.push_back(player_);
 	colliders_.push_back(enemy_);
+
 	for (PlayerBullet* pBullet : player_->GetBullets()) {
 		colliders_.push_back(pBullet);
 	}
+
 	for (EnemyBullet* eBullet : enemy_->GetBullets()) {
 		colliders_.push_back(eBullet);
 	}
-	std::list<Collider*>::iterator itrA = colliders_.begin();
-	for (; itrA != colliders_.end(); ++itrA) {
 
+	std::list<Collider*>::iterator itrA = colliders_.begin();
+	
+	for (; itrA != colliders_.end(); ++itrA) {
 		std::list<Collider*>::iterator itrB = itrA;
 		++itrB;
 		for (; itrB != colliders_.end(); ++itrB) {
-
 			CheckCollisionPair(*(itrA), *(itrB));
 		}
 	}
