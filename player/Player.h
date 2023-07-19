@@ -26,6 +26,8 @@ public:
 
 	void OnCollision();
 
+	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
+
 private:
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;

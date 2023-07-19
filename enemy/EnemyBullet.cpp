@@ -49,11 +49,17 @@ void EnemyBullet::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
-void EnemyBullet::OnCollision() {
-
-}
+void EnemyBullet::OnCollision() { isDead_ = true; }
 
 void EnemyBullet::Draw(const ViewProjection& viewProjection) {
 	// ƒ‚ƒfƒ‹‚Ì•`‰æ
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
+}
+
+Vector3 EnemyBullet::GetWorldPosition() {
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
 }
