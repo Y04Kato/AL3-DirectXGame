@@ -129,8 +129,8 @@ void GameScene::Draw() {
 }
 
 void GameScene::CheckAllCollisions() {
-	float enemyBulletRadius = 1.5f;
-	float playerBulletRadius = 1.5f;
+	float enemyBulletRadius = 0.5f;
+	float playerBulletRadius = 0.5f;
 	float playeyrRadius = 1.0f;
 	float enemyRadius = 1.0f;
 
