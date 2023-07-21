@@ -13,6 +13,7 @@ GameScene::~GameScene() {
 	delete collisionManager_;
 	delete skydome_;
 	delete skydomeModel_;
+	delete railCamera_;
 }
 
 void GameScene::Initialize() {
@@ -40,20 +41,25 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_);
+	Vector3 playerPos(0, 0, 30);
+	player_->Initialize(model_, textureHandle_, playerPos);
 
 	// 敵キャラの生成
 	enemy_ = new Enemy();
 	enemy_->SetPlayer(player_);
 	// 敵キャラの初期化
-	Vector3 position = {0, 0, 20};
-	enemy_->Initialize(model_);
+	Vector3 enemyPos = {10, 0, 100};
+	enemy_->Initialize(model_,enemyPos);
 
 	collisionManager_ = new CollisionManager();
 
 	skydomeModel_ = Model::CreateFromOBJ("skydome", true);
 	skydome_ = new Skydome();
 	skydome_->Initialize(skydomeModel_);
+
+	railCamera_ = new RailCamera();
+	railCamera_->Initialize({0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f});
+	player_->Setparent(&railCamera_->GetWorldTransform());
 }
 
 void GameScene::Update() {
@@ -99,8 +105,11 @@ void GameScene::Update() {
 		// ビュープロジェクション行列の転送
 		viewProjection_.TransferMatrix();
 	} else {
+		railCamera_->Update();
+		viewProjection_.matView = railCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = railCamera_->GetViewProjection().matProjection;
 		// ビュープロジェクション行列の更新と転送
-		viewProjection_.UpdateMatrix();
+		viewProjection_.TransferMatrix();
 	}
 }
 

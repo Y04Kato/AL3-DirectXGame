@@ -6,8 +6,8 @@
 #include "WorldTransform.h"
 #include "utilities/TimedCall.h"
 #include "CalcMath.h"
-#include "Collider.h"
-#include "CollisionConfig.h"
+#include "utilities/Collider.h"
+#include "utilities/CollisionConfig.h"
 
 class Player;
 
@@ -19,7 +19,7 @@ public:
 
 	~Enemy();
 
-	void Initialize(Model* model);
+	void Initialize(Model* model,Vector3 pos);
 
 	void Update();
 

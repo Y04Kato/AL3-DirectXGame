@@ -11,8 +11,9 @@
 #include "player/Player.h"
 #include "DebugCamera.h"
 #include "enemy/Enemy.h"
-#include "CollisionManager.h"
-#include "CollisionConfig.h"
+#include "utilities/CollisionManager.h"
+#include "utilities/CollisionConfig.h"
+#include "utilities/RailCamera.h"
 #include "object/Skydome.h"
 
 /// <summary>
@@ -71,6 +72,8 @@ private: // メンバ変数
 
 	Skydome* skydome_;
 	Model* skydomeModel_ = nullptr;
+
+	RailCamera* railCamera_;
 
 	/// <summary>
 	/// ゲームシーン用

@@ -16,7 +16,7 @@ Enemy::~Enemy() {
 	}
 }
 
-void Enemy::Initialize(Model* model) {
+void Enemy::Initialize(Model* model,Vector3 pos) {
 	assert(model);
 
 	model_ = model;
@@ -29,7 +29,7 @@ void Enemy::Initialize(Model* model) {
 
 	worldTransform_.Initialize();
 
-	worldTransform_.translation_ = {10, 0, 20};
+	worldTransform_.translation_ = pos;
 
 	FireTimer_ = kFireInterval;
 	FireandReset();

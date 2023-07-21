@@ -67,6 +67,15 @@
     <Filter Include="ソース ファイル\utilities">
       <UniqueIdentifier>{e15afaf3-5961-4748-95dd-a5e943fb5b5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\utilities">
+      <UniqueIdentifier>{0d4d0942-6ddd-40f1-b1c0-232523850186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\object">
+      <UniqueIdentifier>{377ae64c-38c8-46dc-abbb-3c7746310355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\object">
+      <UniqueIdentifier>{3b0fb9ad-de0f-49a1-be8f-7be43d1607c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +119,15 @@
     </ClCompile>
     <ClCompile Include="enemy\EnemyState.cpp">
       <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\CollisionManager.cpp">
+      <Filter>ソース ファイル\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Skydome.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\RailCamera.cpp">
+      <Filter>ソース ファイル\utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +218,6 @@
     <ClInclude Include="math\CalcMath.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
-    <ClInclude Include="Affin.h">
-      <Filter>ヘッダー ファイル\math</Filter>
-    </ClInclude>
     <ClInclude Include="utilities\TimedCall.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -221,8 +236,23 @@
     <ClInclude Include="enemy\EnemyState.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
+    <ClInclude Include="utilities\Collider.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\CollisionConfig.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\CollisionManager.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Affin.h">
       <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Skydome.h">
+      <Filter>ヘッダー ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\RailCamera.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

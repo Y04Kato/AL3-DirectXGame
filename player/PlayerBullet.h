@@ -1,8 +1,8 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
-#include "Collider.h"
-#include "CollisionConfig.h"
+#include "utilities/Collider.h"
+#include "utilities/CollisionConfig.h"
 
 class PlayerBullet : public Collider {
 public:

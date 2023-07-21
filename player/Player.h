@@ -3,9 +3,10 @@
 #include "WorldTransform.h"
 #include "Input.h"
 #include "PlayerBullet.h"
+#include "CalcMath.h"
 #include <list>
-#include "Collider.h"
-#include "CollisionConfig.h"
+#include "utilities/Collider.h"
+#include "utilities/CollisionConfig.h"
 
 class Player : public Collider{
 public:
@@ -14,7 +15,7 @@ public:
 
 	~Player();
 
-	void Initialize(Model*model,uint32_t textureHandle);
+	void Initialize(Model* model, uint32_t textureHandle, Vector3 pos);
 
 	void Update();
 
@@ -28,6 +29,8 @@ public:
 	void OnCollision() override;
 
 	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
+
+	void Setparent(const WorldTransform* parent);
 
 private:
 	WorldTransform worldTransform_;

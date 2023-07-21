@@ -13,7 +13,7 @@ Player::~Player() {
 	}
 }
 
-void Player::Initialize(Model* model, uint32_t textureHandle) {
+void Player::Initialize(Model* model, uint32_t textureHandle, Vector3 pos) {
 	// NULLƒ|ƒCƒ“ƒ^ƒ`ƒFƒbƒN
 	assert(model);
 
@@ -26,6 +26,7 @@ void Player::Initialize(Model* model, uint32_t textureHandle) {
 
 	SetCollisionAttribute(CollisionConfig::kCollisionAttributePlayer);
 	SetCollisionMask(~CollisionConfig::kCollisionAttributePlayer);
+	worldTransform_.translation_ = Add(worldTransform_.translation_, pos);
 }
 
 void Player::Update() {
@@ -114,7 +115,7 @@ void Player::Attack() {
 
 		// ’e‚ð¶¬‚µ‰Šú‰»
 		PlayerBullet* newBullet = new PlayerBullet();
-		newBullet->Initialize(model_, worldTransform_.translation_, velocity);
+		newBullet->Initialize(model_, GetWorldPosition(), velocity);
 
 		// ’e‚ð“o˜^‚·‚é
 		bullets_.push_back(newBullet);
@@ -142,3 +143,5 @@ Vector3 Player::GetWorldPosition() {
 	worldPos.z = worldTransform_.matWorld_.m[3][2];
 	return worldPos;
 }
+
+void Player::Setparent(const WorldTransform* parent) { worldTransform_.parent_ = parent; }
