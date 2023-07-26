@@ -6,8 +6,8 @@
 #include "WorldTransform.h"
 #include "utilities/Collider.h"
 #include "utilities/CollisionConfig.h"
-#include <list>
 #include <Sprite.h>
+#include <list>
 
 class Player : public Collider {
 public:
@@ -27,6 +27,8 @@ public:
 
 	void DrawUI();
 
+	void SetReticle(const ViewProjection view);
+
 	Vector3 GetWorldPosition() override;
 	void OnCollision() override;
 
@@ -45,4 +47,6 @@ private:
 
 	WorldTransform worldtransform3Dreticle_;
 	Sprite* sprite2DReticle_ = nullptr;
+
+	int fireTimer;
 };
