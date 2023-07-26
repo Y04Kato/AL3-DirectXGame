@@ -71,6 +71,13 @@ void GameScene::Update() {
 
 	// 敵キャラの更新
 	UpdateEnemyPopCommands();
+	enemys_.remove_if([](Enemy* enemy) {
+		if (enemy->isDead()) {
+			delete enemy;
+			return true;
+		}
+		return false;
+	});
 	for (Enemy* enemy : enemys_) {
 		enemy->Update();
 	}

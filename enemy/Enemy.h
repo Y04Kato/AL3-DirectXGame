@@ -47,6 +47,8 @@ public:
 
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
+	bool isDead() const { return isDead_; }
+
 private:
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*phasetable_[])();
@@ -65,6 +67,8 @@ private:
 	EnemyState* phase_ = nullptr;
 
 	Vector3 velocity_;
+
+	bool isDead_ = false;
 
 	std::list<TimedCall*> timedCalls_;
 

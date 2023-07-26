@@ -36,7 +36,7 @@ void Enemy::Initialize(Model* model, Vector3 pos, const Vector3& velocity) {
 	worldTransform_.translation_ = pos;
 
 	FireTimer_ = kFireInterval;
-	//FireandReset();
+	FireandReset();
 
 	SetCollisionAttribute(CollisionConfig::kCollisionAttributeEnemy);
 	SetCollisionMask(~CollisionConfig::kCollisionAttributeEnemy);
@@ -110,7 +110,7 @@ void Enemy::Fire() {
 	gameScene_->AddEnemyBullet(newBullet);
 }
 
-void Enemy::OnCollision() {}
+void Enemy::OnCollision() { isDead_ = true; }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {
 	// ƒ‚ƒfƒ‹‚Ì•`‰æ
