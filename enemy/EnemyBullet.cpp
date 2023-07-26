@@ -30,18 +30,20 @@ void EnemyBullet::Initialize(Model* model, const Vector3& position, const Vector
 }
 
 void EnemyBullet::Update() {
-	Vector3 toPlayer = Subtract(player_->GetWorldPosition(), worldTransform_.translation_);
-	toPlayer = Normalise(toPlayer);
-	velocity_ = Normalise(velocity_);
-	velocity_ = Slerp(velocity_, toPlayer, 0.1f);
+	//Vector3 toPlayer = Subtract(player_->GetWorldPosition(), worldTransform_.translation_);
+	//toPlayer = Normalise(toPlayer);
+	//velocity_ = Normalise(velocity_);
+	//velocity_ = Slerp(velocity_, toPlayer, 0.1f);
 
-	// Yé≤
-	worldTransform_.rotation_.y = std::atan2(velocity_.x, velocity_.z);
-	float velociteXZ = Length({velocity_.x, 0.0f, velocity_.z});
-	// Xé≤
-	worldTransform_.rotation_.x = std::atan2(-velocity_.y, velociteXZ);
+	//// Yé≤
+	//worldTransform_.rotation_.y = std::atan2(velocity_.x, velocity_.z);
+	//float velociteXZ = Length({velocity_.x, 0.0f, velocity_.z});
+	//// Xé≤
+	//worldTransform_.rotation_.x = std::atan2(-velocity_.y, velociteXZ);
 
-	worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, velocity_);
+	//worldTransform_.translation_ = VectorMultiply(worldTransform_.translation_, velocity_);
+
+	worldTransform_.translation_.x += 1;
 
 	// éûä‘åoâﬂÇ≈è¡ñ≈
 	if (--deathTimer_ <= 0) {

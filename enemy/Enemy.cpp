@@ -35,7 +35,7 @@ void Enemy::Initialize(Model* model, Vector3 pos, const Vector3& velocity) {
 
 	worldTransform_.translation_ = pos;
 
-	FireTimer_ = kFireInterval;
+	//FireTimer_ = kFireInterval;
 	//FireandReset();
 
 	SetCollisionAttribute(CollisionConfig::kCollisionAttributeEnemy);

@@ -74,8 +74,14 @@ void GameScene::Update() {
 		enemy->Update();
 	}
 
+	enemyBullets_.remove_if([](EnemyBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
 	for (EnemyBullet* bullet : enemyBullets_) {
-
 		bullet->Update();
 	}
 
