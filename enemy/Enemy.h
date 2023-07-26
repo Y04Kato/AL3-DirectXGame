@@ -11,6 +11,8 @@
 
 class Player;
 
+class GameScene;
+
 class EnemyState;
 
 class Enemy : public Collider {
@@ -41,7 +43,9 @@ public:
 
 	void OnCollision() override;
 
-	const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+	//const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+
+	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
 private:
 	// メンバ関数ポインタのテーブル
@@ -53,6 +57,8 @@ private:
 	uint32_t textureHandle_ = 0u;
 
 	Player* player_ = nullptr;
+
+	GameScene* gameScene_ = nullptr;
 
 	std::list<EnemyBullet*> bullets_;
 

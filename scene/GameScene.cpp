@@ -50,6 +50,7 @@ void GameScene::Initialize() {
 	// 敵キャラの初期化
 	Vector3 enemyPos = {10, 0, 100};
 	enemy_->Initialize(model_,enemyPos);
+	enemy_->SetGameScene(this);
 
 	collisionManager_ = new CollisionManager();
 
@@ -77,7 +78,7 @@ void GameScene::Update() {
 		collisionManager_->AddCollider(pBullet);
 	}
 
-	for (EnemyBullet* eBullet : enemy_->GetBullets()) {
+	for (EnemyBullet* eBullet : enemyBullets_) {
 		collisionManager_->AddCollider(eBullet);
 	}
 
@@ -159,4 +160,8 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::AddEnemyBullet(EnemyBullet* enemyBullet) { 
+	enemyBullets_.push_back(enemyBullet); 
 }
