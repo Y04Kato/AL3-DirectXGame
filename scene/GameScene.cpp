@@ -17,6 +17,10 @@ GameScene::~GameScene() {
 	delete skydome_;
 	delete skydomeModel_;
 	delete railCamera_;
+	for (EnemyBullet* bullet : enemyBullets_) {
+
+		delete bullet;
+	}
 }
 
 void GameScene::Initialize() {
@@ -68,6 +72,11 @@ void GameScene::Update() {
 	UpdateEnemyPopCommands();
 	for (Enemy* enemy : enemys_) {
 		enemy->Update();
+	}
+
+	for (EnemyBullet* bullet : enemyBullets_) {
+
+		bullet->Update();
 	}
 
 	collisionManager_->ClearColliders();
@@ -144,6 +153,10 @@ void GameScene::Draw() {
 	/// </summary>
 	for (Enemy* enemy : enemys_) {
 		enemy->Draw(viewProjection_);
+	}
+	for (EnemyBullet* bullet : enemyBullets_) {
+
+		bullet->Draw(viewProjection_);
 	}
 	player_->Draw(viewProjection_);
 	skydome_->Draw(viewProjection_);

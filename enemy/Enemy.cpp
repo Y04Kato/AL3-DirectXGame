@@ -36,7 +36,7 @@ void Enemy::Initialize(Model* model, Vector3 pos, const Vector3& velocity) {
 	worldTransform_.translation_ = pos;
 
 	FireTimer_ = kFireInterval;
-	FireandReset();
+	//FireandReset();
 
 	SetCollisionAttribute(CollisionConfig::kCollisionAttributeEnemy);
 	SetCollisionMask(~CollisionConfig::kCollisionAttributeEnemy);
@@ -80,9 +80,7 @@ void Enemy::ChangePhase(EnemyState* newState) {
 	phase_ = newState;
 }
 
-void Enemy::Move(Vector3 speed) {
-	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
-};
+void Enemy::Move(Vector3 speed) { worldTransform_.translation_ += speed; };
 
 void Enemy::Fire() {
 	assert(player_);
