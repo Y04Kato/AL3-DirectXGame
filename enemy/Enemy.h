@@ -21,7 +21,7 @@ public:
 
 	~Enemy();
 
-	void Initialize(Model* model,Vector3 pos);
+	void Initialize(Model* model, Vector3 pos, const Vector3& velocity);
 
 	void Update();
 
@@ -60,9 +60,11 @@ private:
 
 	GameScene* gameScene_ = nullptr;
 
-	std::list<EnemyBullet*> bullets_;
+	//std::list<EnemyBullet*> bullets_;
 
 	EnemyState* phase_ = nullptr;
+
+	Vector3 velocity_;
 
 	std::list<TimedCall*> timedCalls_;
 

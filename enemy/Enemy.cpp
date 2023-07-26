@@ -2,21 +2,23 @@
 #include "Affin.h"
 #include "player/Player.h"
 #include <cassert>
+#include "scene/GameScene.h"
 
 Enemy::Enemy() {}
 
 Enemy::~Enemy() {
 	// delete phase_;
 
-	for (EnemyBullet* bullet : bullets_) {
-		delete bullet;
-	}
+	//for (EnemyBullet* bullet : bullets_) {
+	//	delete bullet;
+	//}
+
 	for (TimedCall* timedCall : timedCalls_) {
 		delete timedCall;
 	}
 }
 
-void Enemy::Initialize(Model* model,Vector3 pos) {
+void Enemy::Initialize(Model* model, Vector3 pos, const Vector3& velocity) {
 	assert(model);
 
 	model_ = model;
@@ -29,6 +31,8 @@ void Enemy::Initialize(Model* model,Vector3 pos) {
 
 	worldTransform_.Initialize();
 
+	velocity_ = velocity;
+
 	worldTransform_.translation_ = pos;
 
 	FireTimer_ = kFireInterval;
@@ -40,13 +44,13 @@ void Enemy::Initialize(Model* model,Vector3 pos) {
 
 void Enemy::Update() {
 	// ƒfƒXƒtƒ‰ƒO‚Ì—§‚Á‚½’e‚Ìíœ
-	bullets_.remove_if([](EnemyBullet* bullet) {
+	/*bullets_.remove_if([](EnemyBullet* bullet) {
 		if (bullet->IsDead()) {
 			delete bullet;
 			return true;
 		}
 		return false;
-	});
+	});*/
 
 	// phase_->Update(this);
 
@@ -66,9 +70,9 @@ void Enemy::Update() {
 	worldTransform_.UpdateMatrix();
 
 	// ’eXV
-	for (EnemyBullet* bullet : bullets_) {
+	/*for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
-	}
+	}*/
 }
 
 void Enemy::ChangePhase(EnemyState* newState) {
@@ -76,7 +80,9 @@ void Enemy::ChangePhase(EnemyState* newState) {
 	phase_ = newState;
 }
 
-void Enemy::Move(Vector3 speed) { worldTransform_.translation_ += speed; };
+void Enemy::Move(Vector3 speed) {
+	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+};
 
 void Enemy::Fire() {
 	assert(player_);
@@ -103,7 +109,7 @@ void Enemy::Fire() {
 	newBullet->Initialize(model_, worldTransform_.translation_, velocity);
 
 	// ’e‚ð“o˜^‚·‚é
-	bullets_.push_back(newBullet);
+	gameScene_->AddEnemyBullet(newBullet);
 }
 
 void Enemy::OnCollision() {}
@@ -113,9 +119,9 @@ void Enemy::Draw(const ViewProjection& viewProjection) {
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
 
 	// ’e•`‰æ
-	for (EnemyBullet* bullet : bullets_) {
+	/*for (EnemyBullet* bullet : bullets_) {
 		bullet->Draw(viewProjection);
-	}
+	}*/
 }
 
 void Enemy::FireandReset() {
