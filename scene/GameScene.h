@@ -15,6 +15,7 @@
 #include "utilities/CollisionConfig.h"
 #include "utilities/RailCamera.h"
 #include "object/Skydome.h"
+#include "utilities/CatmullRomSpline.h"
 
 /// <summary>
 /// ゲームシーン
@@ -74,6 +75,7 @@ private: // メンバ変数
 	Model* skydomeModel_ = nullptr;
 
 	RailCamera* railCamera_;
+	CatmullRomSpline* Spline_;
 
 	/// <summary>
 	/// ゲームシーン用

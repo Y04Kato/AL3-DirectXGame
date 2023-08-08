@@ -14,6 +14,7 @@ GameScene::~GameScene() {
 	delete skydome_;
 	delete skydomeModel_;
 	delete railCamera_;
+	delete Spline_;
 }
 
 void GameScene::Initialize() {
@@ -41,7 +42,7 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	Vector3 playerPos(0, 0, 30);
+	Vector3 playerPos(0, 0, 0);
 	player_->Initialize(model_, textureHandle_, playerPos);
 
 	// 敵キャラの生成
@@ -60,6 +61,8 @@ void GameScene::Initialize() {
 	railCamera_ = new RailCamera();
 	railCamera_->Initialize({0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f});
 	player_->Setparent(&railCamera_->GetWorldTransform());
+	Spline_ = new CatmullRomSpline();
+	Spline_->Initialize(viewProjection_);
 }
 
 void GameScene::Update() {
@@ -84,6 +87,8 @@ void GameScene::Update() {
 	collisionManager_->CheckAllCollision();
 
 	skydome_->Update();
+
+	Spline_->Update();
 
 	debugCamera_->Update();
 
@@ -142,6 +147,7 @@ void GameScene::Draw() {
 	enemy_->Draw(viewProjection_);
 	player_->Draw(viewProjection_);
 	skydome_->Draw(viewProjection_);
+	Spline_->Draw();
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
