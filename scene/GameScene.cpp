@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "TextureManager.h"
+#include "AxisIndicator.h"
 #include <cassert>
 
 GameScene::GameScene() {}
@@ -19,6 +20,11 @@ void GameScene::Initialize() {
 	skydomeModel_.reset(Model::CreateFromOBJ("skyDome", true));
 
 	groundModel_.reset(Model::CreateFromOBJ("ground", true));
+
+	// 軸方向表示の表示を有効化
+	AxisIndicator::GetInstance()->SetVisible(true);
+	// 参照するビュープロジェクションを指定
+	AxisIndicator::GetInstance()->SetTargetViewProjection(&viewProjection_);
 
 	worldTransform_.Initialize();
 	viewProjection_.Initialize();
