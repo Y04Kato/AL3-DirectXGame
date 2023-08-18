@@ -111,9 +111,13 @@
     <ClCompile Include="2d\ImGuiManager.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
+    <ClCompile Include="ground\ground.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="math\Affin.cpp" />
+    <ClCompile Include="math\WorldTransformEx.cpp" />
+    <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
+    <ClCompile Include="skydome\Skydome.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\ImGuiManager.h" />
@@ -138,13 +142,16 @@
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="base\TextureManager.h" />
     <ClInclude Include="base\WinApp.h" />
+    <ClInclude Include="ground\ground.h" />
     <ClInclude Include="input\Input.h" />
+    <ClInclude Include="math\Affin.h" />
     <ClInclude Include="math\Matrix4x4.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="player\Player.h" />
     <ClInclude Include="scene\GameScene.h" />
+    <ClInclude Include="skydome\Skydome.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
