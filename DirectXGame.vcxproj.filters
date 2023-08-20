@@ -61,6 +61,21 @@
     <Filter Include="ヘッダー ファイル\skydome">
       <UniqueIdentifier>{ed97cb39-3c02-4795-984c-b42df2df4003}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\utilities">
+      <UniqueIdentifier>{18ab9deb-d122-402e-a38c-72add664d065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\player">
+      <UniqueIdentifier>{19c4f556-1a1e-420b-80d8-e55b4f0277be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ground">
+      <UniqueIdentifier>{7a3de3ed-89ce-4fda-b5cb-9836e9af91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\utilities">
+      <UniqueIdentifier>{c9884f6c-238e-4335-b5a9-d581e42c2d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\skydome">
+      <UniqueIdentifier>{d03fac08-206b-495f-b518-83d64e3e19c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,20 +93,26 @@
     <ClCompile Include="2d\ImGuiManager.cpp">
       <Filter>ソース ファイル\2d</Filter>
     </ClCompile>
-    <ClCompile Include="ground\ground.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="player\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="skydome\Skydome.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="math\WorldTransformEx.cpp">
       <Filter>ソース ファイル\math</Filter>
     </ClCompile>
     <ClCompile Include="math\Affin.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\CalcMath.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\FollowCamera.cpp">
+      <Filter>ソース ファイル\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ground\ground.cpp">
+      <Filter>ソース ファイル\ground</Filter>
+    </ClCompile>
+    <ClCompile Include="player\Player.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="skydome\Skydome.cpp">
+      <Filter>ソース ファイル\skydome</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="skydome\Skydome.h">
       <Filter>ヘッダー ファイル\skydome</Filter>
+    </ClInclude>
+    <ClInclude Include="math\CalcMath.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\FollowCamera.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
