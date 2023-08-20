@@ -2,8 +2,8 @@
 #include <cassert>
 #define _USE_MATH_DEFINES
 #include "ImGuiManager.h"
-#include <math.h>
 #include "utilities/GlobalVariables.h"
+#include <math.h>
 
 void Player::Initialize(const std::vector<Model*>& models) {
 	// NULLポインタチェック
@@ -50,10 +50,18 @@ void Player::Initialize(const std::vector<Model*>& models) {
 
 	const char* groupName = "Player";
 	GlobalVariables::GetInstance()->CreateGroup(groupName);
-	globalVariables->SetValue(groupName, "Test", 90);
+	globalVariables->AddItem(groupName, "Test", 90);
+	globalVariables->AddItem(groupName, "Head Translation", worldTransformHead_.translation_);
+	globalVariables->AddItem(groupName, "L_Arm Translation", worldTransformL_arm_.translation_);
+	globalVariables->AddItem(groupName, "R_Arm Translation", worldTransformR_arm_.translation_);
+	globalVariables->AddItem(groupName, "floatingCycle", floatingCycle_);
+	globalVariables->AddItem(groupName, "floatingAmplitude", floatingAmplitude_);
 }
 
 void Player::Update() {
+
+	ApplyGlobalVariables();
+
 	// 行列を定数バッファに転送
 	worldTransformBase_.TransferMatrix();
 
@@ -202,4 +210,19 @@ void Player::BehaviorAttackUpdate() {
 	}
 
 	animationFrame++;
+}
+
+void Player::ApplyGlobalVariables() {
+	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
+	const char* groupName = "Player";
+
+	worldTransformHead_.translation_ =
+	    globalVariables->GetVector3Value(groupName, "Head Translation");
+	worldTransformL_arm_.translation_ =
+	    globalVariables->GetVector3Value(groupName, "L_Arm Translation");
+	worldTransformR_arm_.translation_ =
+	    globalVariables->GetVector3Value(groupName, "R_Arm Translation");
+
+	floatingCycle_ = globalVariables->GetIntValue(groupName, "floatingCycle");
+	floatingAmplitude_ = globalVariables->GetFloatValue(groupName, "floatingAmplitude");
 }

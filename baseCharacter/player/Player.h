@@ -31,6 +31,8 @@ public:
 	void BehaviorAttackInitialize();
 	void BehaviorAttackUpdate();
 
+	void ApplyGlobalVariables();
+
 private:
 	WorldTransform worldTransformBase_;
 	WorldTransform worldTransformBody_;
@@ -52,7 +54,7 @@ private:
 
 	float floatingParameter_ = 0.0f;
 
-	uint16_t floatingCycle_ = 120;
+	int32_t floatingCycle_ = 120;
 
 	float floatingAmplitude_ = 0.3f;
 
