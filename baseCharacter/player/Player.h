@@ -4,14 +4,15 @@
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include "baseCharacter/BaseCharacter.h"
 
-class Player {
+class Player : public BaseCharacter{
 public:
-	void Initialize(Model* modelBody, Model* modelHead, Model* modelL_arm, Model* modelR_arm);
+	void Initialize(const std::vector<Model*>& models) override;
 
-	void Update();
+	void Update() override;
 
-	void Draw(ViewProjection viewProjection);
+	void Draw(const ViewProjection& viewProjection) override;
 
 	const WorldTransform& GetWorldtransformBase() { return worldTransformBase_; }
 	const WorldTransform& GetWorldTransformBody() { return worldTransformBody_; }

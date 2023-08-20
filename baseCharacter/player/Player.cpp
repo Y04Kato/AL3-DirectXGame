@@ -1,20 +1,17 @@
 #include "Player.h"
 #include <cassert>
 #define _USE_MATH_DEFINES
-#include <math.h>
 #include "ImGuiManager.h"
+#include <math.h>
 
-void Player::Initialize(Model* modelBody, Model* modelHead, Model* modelL_arm, Model* modelR_arm) {
+void Player::Initialize(const std::vector<Model*>& models) {
 	// NULLポインタチェック
-	assert(modelBody);
-	assert(modelHead);
-	assert(modelL_arm);
-	assert(modelR_arm);
+	BaseCharacter::Initialize(models);
 
-	modelBody_ = modelBody;
-	modelHead_ = modelHead;
-	modelL_arm_ = modelL_arm;
-	modelR_arm_ = modelR_arm;
+	models_[kModelIndexBody] = models[kModelIndexBody];
+	models_[kModelIndexHead] = models[kModelIndexHead];
+	models_[kModelIndexL_arm] = models[kModelIndexL_arm];
+	models_[kModelIndexR_arm] = models[kModelIndexR_arm];
 
 	worldTransformHead_.translation_.y = 1.8f;
 
@@ -72,12 +69,12 @@ void Player::Update() {
 	worldTransformR_arm_.UpdateMatrix();
 }
 
-void Player::Draw(ViewProjection viewProjection) {
+void Player::Draw(const ViewProjection& viewProjection) {
 	// 3Dモデルを描画
-	modelBody_->Draw(worldTransformBody_, viewProjection);
-	modelHead_->Draw(worldTransformHead_, viewProjection);
-	modelL_arm_->Draw(worldTransformL_arm_, viewProjection);
-	modelR_arm_->Draw(worldTransformR_arm_, viewProjection);
+	models_[kModelIndexBody]->Draw(worldTransformBody_, viewProjection);
+	models_[kModelIndexHead]->Draw(worldTransformHead_, viewProjection);
+	models_[kModelIndexL_arm]->Draw(worldTransformL_arm_, viewProjection);
+	models_[kModelIndexR_arm]->Draw(worldTransformR_arm_, viewProjection);
 }
 
 void Player::InitializeFloatingGimmick() { floatingParameter_ = 0.0f; }

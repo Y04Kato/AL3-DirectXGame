@@ -35,9 +35,11 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = std::make_unique<Player>();
 	// 自キャラの初期化
-	player_->Initialize(
+	std::vector<Model*> playerModels = {
 	    playerModelBody_.get(), playerModelHead_.get(), playerModelL_Arm_.get(),
-	    playerModelR_Arm_.get());
+	    playerModelR_Arm_.get()};
+
+	player_->Initialize(playerModels);
 
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(skydomeModel_.get());

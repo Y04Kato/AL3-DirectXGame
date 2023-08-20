@@ -9,7 +9,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include <memory>
-#include "player/Player.h"
+#include "baseCharacter/player/Player.h"
 #include "skydome/Skydome.h"
 #include "ground/Ground.h"
 #include "DebugCamera.h"
