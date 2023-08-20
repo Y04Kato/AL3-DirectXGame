@@ -10,6 +10,7 @@
 #include "WorldTransform.h"
 #include <memory>
 #include "baseCharacter/player/Player.h"
+#include "baseCharacter/enemy/enemy.h"
 #include "skydome/Skydome.h"
 #include "ground/Ground.h"
 #include "DebugCamera.h"
@@ -56,6 +57,8 @@ private: // メンバ変数
 	std::unique_ptr<Model> playerModelL_Arm_ = nullptr;
 	std::unique_ptr<Model> playerModelR_Arm_ = nullptr;
 
+	std::unique_ptr<Model> enemyModel_;
+
 	std::unique_ptr<Model> skydomeModel_ = nullptr;
 	std::unique_ptr<Model> groundModel_ = nullptr;
 
@@ -63,6 +66,7 @@ private: // メンバ変数
 	ViewProjection viewProjection_;
 
 	std::unique_ptr<Player> player_;
+	std::unique_ptr<Enemy> enemy_;
 	std::unique_ptr<Skydome> skydome_;
 	std::unique_ptr<Ground> ground_;
 

@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "AxisIndicator.h"
 #include "TextureManager.h"
+#include "ImGuiManager.h"
 #include <cassert>
 
 GameScene::GameScene() {}
@@ -17,6 +18,8 @@ void GameScene::Initialize() {
 	playerModelHead_.reset(Model::CreateFromOBJ("float_Head", true));
 	playerModelL_Arm_.reset(Model::CreateFromOBJ("float_L_arm", true));
 	playerModelR_Arm_.reset(Model::CreateFromOBJ("float_R_arm", true));
+
+	enemyModel_.reset(Model::CreateFromOBJ("enemy", true));
 
 	skydomeModel_.reset(Model::CreateFromOBJ("skyDome", true));
 
@@ -41,6 +44,10 @@ void GameScene::Initialize() {
 
 	player_->Initialize(playerModels);
 
+	enemy_ = std::make_unique<Enemy>();
+	std::vector<Model*> enemyModels = {enemyModel_.get()};
+	enemy_->Initialize(enemyModels);
+
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(skydomeModel_.get());
 
@@ -56,6 +63,8 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	// 自キャラの更新
 	player_->Update();
+
+	enemy_->Update();
 
 	debugCamera_->Update();
 
@@ -84,6 +93,10 @@ void GameScene::Update() {
 	viewProjection_.matView = followCamera_->GetViewProjection().matView;
 	viewProjection_.matProjection = followCamera_->GetViewProjection().matProjection;
 	viewProjection_.TransferMatrix();
+
+	ImGui::Begin("Debug Info");
+	ImGui::Text("Debug Camera : Q");
+	ImGui::End();
 }
 
 void GameScene::Draw() {
@@ -113,6 +126,7 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	player_->Draw(viewProjection_);
+	enemy_->Draw(viewProjection_);
 	skydome_->Draw(viewProjection_);
 	ground_->Draw(viewProjection_);
 

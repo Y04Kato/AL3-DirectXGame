@@ -129,6 +129,9 @@
     <ClCompile Include="baseCharacter\BaseCharacter.cpp">
       <Filter>ソース ファイル\baseCharacter</Filter>
     </ClCompile>
+    <ClCompile Include="baseCharacter\enemy\enemy.cpp">
+      <Filter>ソース ファイル\baseCharacter\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3d\ViewProjection.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="baseCharacter\BaseCharacter.h">
       <Filter>ヘッダー ファイル\baseCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="baseCharacter\enemy\enemy.h">
+      <Filter>ヘッダー ファイル\baseCharacter\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
