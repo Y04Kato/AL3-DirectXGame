@@ -16,6 +16,8 @@ Matrix4x4 MakeRotateYmatrix(float radian);
 // 3 Z²‰ñ“]s—ñ
 Matrix4x4 MakeRotateZmatrix(float radian);
 
+Matrix4x4 MakeRotateMatrix(Vector3 theta);
+
 // •½sˆÚ“®
 Matrix4x4 MakeTranslateMatrix(Vector3 translate);
 

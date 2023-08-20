@@ -161,15 +161,19 @@ Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2) {
 	return result;
 }
 
+Matrix4x4 MakeRotateMatrix(Vector3 theta) {
+	Matrix4x4 rotateX = MakeRotateXmatrix(theta.x);
+	Matrix4x4 rotateY = MakeRotateYmatrix(theta.y);
+	Matrix4x4 rotateZ = MakeRotateZmatrix(theta.z);
+	return Multiply(rotateX, Multiply(rotateY, rotateZ));
+}
+
 // ƒAƒtƒBƒ“•ÏŠ·
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate) {
 	Matrix4x4 result;
 	Matrix4x4 scaleMatrix = MakeScaleMatrix(scale);
 
-	Matrix4x4 rotateXMatrix = MakeRotateXmatrix(rotate.x);
-	Matrix4x4 rotateYMatrix = MakeRotateYmatrix(rotate.y);
-	Matrix4x4 rotateZMatrix = MakeRotateZmatrix(rotate.z);
-	Matrix4x4 rotateXYZMatrix = Multiply(rotateXMatrix, Multiply(rotateYMatrix, rotateZMatrix));
+	Matrix4x4 rotateXYZMatrix = MakeRotateMatrix(rotate);
 
 	Matrix4x4 translateMatrix = MakeTranslateMatrix(translate);
 

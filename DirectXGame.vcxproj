@@ -114,10 +114,12 @@
     <ClCompile Include="ground\ground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Affin.cpp" />
+    <ClCompile Include="math\CalcMath.cpp" />
     <ClCompile Include="math\WorldTransformEx.cpp" />
     <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="skydome\Skydome.cpp" />
+    <ClCompile Include="utilities\FollowCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\ImGuiManager.h" />
@@ -145,6 +147,7 @@
     <ClInclude Include="ground\ground.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Affin.h" />
+    <ClInclude Include="math\CalcMath.h" />
     <ClInclude Include="math\Matrix4x4.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
@@ -152,6 +155,7 @@
     <ClInclude Include="player\Player.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="skydome\Skydome.h" />
+    <ClInclude Include="utilities\FollowCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
