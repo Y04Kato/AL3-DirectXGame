@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector3.h"
+#include <json.hpp>
 #include <map>
 #include <string>
 #include <variant>
@@ -14,6 +15,8 @@ public:
 	void SetValue(const std::string& groupName, const std::string& key, int32_t value);
 	void SetValue(const std::string& groupName, const std::string& key, float value);
 	void SetValue(const std::string& groupName, const std::string& key, Vector3& value);
+
+	void SaveFile(const std::string& groupName);
 
 private:
 	GlobalVariables() = default;
@@ -31,4 +34,7 @@ public:
 	};
 
 	std::map<std::string, Group> datas_;
+
+	using json = nlohmann::json;
+	const std::string kDirectoryPath = "Resources/GlobalVariables/";
 };
