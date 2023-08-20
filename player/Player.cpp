@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <cassert>
 
-void Player::Initialize(Model* model) {
+void Player::Initialize(Model* modelBody, Model* modelHead, Model* modelL_arm, Model* modelR_arm) {
 	// NULLポインタチェック
 	assert(model);
 

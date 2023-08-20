@@ -1,13 +1,11 @@
 #include "GameScene.h"
-#include "TextureManager.h"
 #include "AxisIndicator.h"
+#include "TextureManager.h"
 #include <cassert>
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() { 
-
-}
+GameScene::~GameScene() {}
 
 void GameScene::Initialize() {
 
@@ -15,7 +13,10 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	playerModel_.reset(Model::CreateFromOBJ("player", true));
+	playerModelBody_.reset(Model::CreateFromOBJ("float_Body", true));
+	playerModelHead_.reset(Model::CreateFromOBJ("float_Head", true));
+	playerModelL_Arm_.reset(Model::CreateFromOBJ("float_L_arm", true));
+	playerModelR_Arm_.reset(Model::CreateFromOBJ("float_R_arm", true));
 
 	skydomeModel_.reset(Model::CreateFromOBJ("skyDome", true));
 
@@ -34,7 +35,9 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = std::make_unique<Player>();
 	// 自キャラの初期化
-	player_->Initialize(playerModel_.get());
+	player_->Initialize(
+	    playerModelBody_.get(), playerModelHead_.get(), playerModelL_Arm_.get(),
+	    playerModelR_Arm_.get());
 
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(skydomeModel_.get());

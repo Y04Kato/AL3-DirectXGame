@@ -7,7 +7,7 @@
 
 class Player {
 public:
-	void Initialize(Model* model);
+	void Initialize(Model* modelBody, Model* modelHead, Model* modelL_arm, Model* modelR_arm);
 
 	void Update();
 
@@ -20,7 +20,10 @@ public:
 
 private:
 	WorldTransform worldTransform_;
-	Model* model_ = nullptr;
+	Model* modelBody_ = nullptr;
+	Model* modelHead_ = nullptr;
+	Model* modelL_arm_ = nullptr;
+	Model* modelR_arm_ = nullptr;
 
 	Input* input_ = nullptr;
 

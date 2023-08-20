@@ -51,7 +51,11 @@ private: // メンバ変数
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 
-	std::unique_ptr<Model> playerModel_ = nullptr;
+	std::unique_ptr<Model> playerModelBody_ = nullptr;
+	std::unique_ptr<Model> playerModelHead_ = nullptr;
+	std::unique_ptr<Model> playerModelL_Arm_ = nullptr;
+	std::unique_ptr<Model> playerModelR_Arm_ = nullptr;
+
 	std::unique_ptr<Model> skydomeModel_ = nullptr;
 	std::unique_ptr<Model> groundModel_ = nullptr;
 
