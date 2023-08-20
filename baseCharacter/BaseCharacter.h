@@ -1,10 +1,16 @@
 #pragma once
-#include <vector>
-#include <Model.h>
-#include "WorldTransform.h"
 #include "ViewProjection.h"
+#include "WorldTransform.h"
+#include <Model.h>
+#include <vector>
 
-enum ModelParts { kModelIndexBody, kModelIndexHead, kModelIndexL_arm, kModelIndexR_arm };
+enum ModelParts {
+	kModelIndexBody,
+	kModelIndexHead,
+	kModelIndexL_arm,
+	kModelIndexR_arm,
+	kModelIndexWeapon
+};
 
 class BaseCharacter {
 public:

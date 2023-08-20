@@ -56,6 +56,7 @@ private: // メンバ変数
 	std::unique_ptr<Model> playerModelHead_ = nullptr;
 	std::unique_ptr<Model> playerModelL_Arm_ = nullptr;
 	std::unique_ptr<Model> playerModelR_Arm_ = nullptr;
+	std::unique_ptr<Model> playerModelWeapon_ = nullptr;
 
 	std::unique_ptr<Model> enemyModel_;
 

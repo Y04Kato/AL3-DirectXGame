@@ -19,6 +19,8 @@ void GameScene::Initialize() {
 	playerModelL_Arm_.reset(Model::CreateFromOBJ("float_L_arm", true));
 	playerModelR_Arm_.reset(Model::CreateFromOBJ("float_R_arm", true));
 
+	playerModelWeapon_.reset(Model::CreateFromOBJ("weapon", true));
+
 	enemyModel_.reset(Model::CreateFromOBJ("enemy", true));
 
 	skydomeModel_.reset(Model::CreateFromOBJ("skyDome", true));
@@ -40,7 +42,7 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	std::vector<Model*> playerModels = {
 	    playerModelBody_.get(), playerModelHead_.get(), playerModelL_Arm_.get(),
-	    playerModelR_Arm_.get()};
+	    playerModelR_Arm_.get(), playerModelWeapon_.get()};
 
 	player_->Initialize(playerModels);
 
