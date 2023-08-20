@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include "ImGuiManager.h"
 #include <math.h>
+#include "utilities/GlobalVariables.h"
 
 void Player::Initialize(const std::vector<Model*>& models) {
 	// NULLポインタチェック
@@ -43,6 +44,13 @@ void Player::Initialize(const std::vector<Model*>& models) {
 	worldTransformWeapon_.Initialize();
 
 	input_ = Input::GetInstance();
+
+	GlobalVariables* globalVariables{};
+	globalVariables = GlobalVariables::GetInstance();
+
+	const char* groupName = "Player";
+	GlobalVariables::GetInstance()->CreateGroup(groupName);
+	globalVariables->SetValue(groupName, "Test", 90);
 }
 
 void Player::Update() {

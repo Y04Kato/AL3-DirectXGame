@@ -132,6 +132,9 @@
     <ClCompile Include="baseCharacter\enemy\enemy.cpp">
       <Filter>ソース ファイル\baseCharacter\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="utilities\GlobalVariables.cpp">
+      <Filter>ソース ファイル\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3d\ViewProjection.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="baseCharacter\enemy\enemy.h">
       <Filter>ヘッダー ファイル\baseCharacter\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\GlobalVariables.h">
+      <Filter>ヘッダー ファイル\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

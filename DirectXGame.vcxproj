@@ -122,6 +122,7 @@
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="skydome\Skydome.cpp" />
     <ClCompile Include="utilities\FollowCamera.cpp" />
+    <ClCompile Include="utilities\GlobalVariables.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\ImGuiManager.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="skydome\Skydome.h" />
     <ClInclude Include="utilities\FollowCamera.h" />
+    <ClInclude Include="utilities\GlobalVariables.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
