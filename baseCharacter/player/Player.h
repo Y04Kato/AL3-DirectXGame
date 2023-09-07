@@ -6,6 +6,7 @@
 #include "WorldTransform.h"
 #include "baseCharacter/BaseCharacter.h"
 #include <optional>
+#include "baseCharacter/bomb/Bomb.h"
 
 class Player : public BaseCharacter{
 public:
@@ -49,6 +50,8 @@ private:
 	Model* modelWeapon_ = nullptr;
 
 	Input* input_ = nullptr;
+
+	std::unique_ptr<Bomb> bomb = nullptr;
 
 	const ViewProjection* viewProjection_ = nullptr;
 

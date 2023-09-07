@@ -43,6 +43,9 @@ void Player::Initialize(const std::vector<Model*>& models) {
 
 	worldTransformWeapon_.Initialize();
 
+	bomb = std::make_unique<Bomb>();
+	bomb->Initialize();
+
 	input_ = Input::GetInstance();
 
 	GlobalVariables* globalVariables{};
@@ -96,6 +99,14 @@ void Player::Update() {
 		behaviorRequest_ = std::nullopt;
 	}
 
+	if (input_->TriggerKey(DIK_SPACE)) {
+		bomb->SetBomb(worldTransformBody_);
+	}
+	if (input_->TriggerKey(DIK_K)) {
+		bomb->ExplosionBomb();
+	}
+	bomb->Update();
+
 	switch (behavior_) {
 	case Player::Behavior::kRoot:
 	default:
@@ -134,6 +145,8 @@ void Player::Draw(const ViewProjection& viewProjection) {
 	if (behavior_ == Behavior::kAttack) {
 		models_[kModelIndexWeapon]->Draw(worldTransformWeapon_, viewProjection);
 	}
+
+	bomb->Draw(viewProjection);
 }
 
 void Player::InitializeFloatingGimmick() { floatingParameter_ = 0.0f; }

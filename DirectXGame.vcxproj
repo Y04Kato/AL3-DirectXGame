@@ -110,6 +110,7 @@
   <ItemGroup>
     <ClCompile Include="2d\ImGuiManager.cpp" />
     <ClCompile Include="baseCharacter\BaseCharacter.cpp" />
+    <ClCompile Include="baseCharacter\bomb\Bomb.cpp" />
     <ClCompile Include="baseCharacter\enemy\enemy.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="3d\WorldTransform.h" />
     <ClInclude Include="audio\Audio.h" />
     <ClInclude Include="baseCharacter\BaseCharacter.h" />
+    <ClInclude Include="baseCharacter\bomb\Bomb.h" />
     <ClInclude Include="baseCharacter\enemy\enemy.h" />
     <ClInclude Include="base\DirectXCommon.h" />
     <ClInclude Include="base\SafeDelete.h" />
